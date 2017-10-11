@@ -1,0 +1,2 @@
+export const DECREASE_TIMER = 'DECREASE_TIMER';
+export const SET_RUNNING = 'SET_RUNNING';
