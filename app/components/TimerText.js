@@ -12,11 +12,11 @@ const TimerText = ({timer}) => {
     
     return (
         <Text 
-          style={{ color: '#ddd', fontSize: 120 }}>
+            style={{ color: '#ddd', fontSize: 120 }}>
             {`${mm}:${ss}`}
         </Text>
     );
-}
+};
 
 TimerText.propTypes = {
     timer: PropTypes.number.isRequired

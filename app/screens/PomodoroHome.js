@@ -1,11 +1,11 @@
-import { connect } from 'react-redux'
+import { connect } from 'react-redux';
 import decreaseTimer from '../actions/decreaseTimer';
 import resetTimer from '../actions/resetTimer';
 import setRunning from '../actions/setRunning';
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import { StyleSheet, Animated } from 'react-native';
+import { Animated } from 'react-native';
 import ImageButton from '../components/ImageButton.js';
 import TimerText from '../components/TimerText.js';
   
@@ -17,50 +17,50 @@ const stop = (dispatch) => {
     dispatch(setRunning(false));
     dispatch(resetTimer());
     stopTimer();
-}
+};
 
 const start = (dispatch) => {
     Animated.spring(bgColor, { toValue: 1 }).start();
     dispatch(setRunning(true));
     stopTimer();
     startTimer(dispatch);
-}
+};
 
 const stopTimer = () => {
     if (interval) {
         clearInterval(interval);
         interval = null;
     }
-}
+};
 
 const runTimer = (dispatch) => {
     dispatch(decreaseTimer());
-}
+};
 
 const startTimer = (dispatch) => {
     runTimer(dispatch);
     interval = setInterval(() => {
         runTimer(dispatch);
     }, 1000);
-}
+};
 
-const mapStateToProps = (state, ownProps) => {
+const mapStateToProps = state => {
     return {
         timer: state.timer,
         running: state.running
     };
 };
 
-const mapDispatchToProps = (dispatch, ownProps) => {
+const mapDispatchToProps = dispatch => {
     return { 
         start: () => {
-            start(dispatch)
+            start(dispatch);
         }, 
         stop: () => {
-            stop(dispatch)
+            stop(dispatch);
         }
-    }
-}  
+    };
+};  
     
 const RootView = ({timer, start, stop, running}) => {
     
@@ -71,15 +71,15 @@ const RootView = ({timer, start, stop, running}) => {
 
     return (
         <Animated.View 
-        style = {[{ 
+            style = {[{ 
                 flex: 1, alignItems: 'center', justifyContent: 'center' 
             }, { backgroundColor } ]}>
-        <TimerText timer={timer} />
-        <ImageButton 
-            onClick={running ? stop : start}
-            name={running ? "stop": "play"}
-        />
-    </Animated.View>
+            <TimerText timer={timer} />
+            <ImageButton 
+                onClick={running ? stop : start}
+                name={running ? 'stop': 'play'}
+            />
+        </Animated.View>
     );
 };
 
@@ -88,7 +88,7 @@ RootView.propTypes = {
     start: PropTypes.func.isRequired,
     stop: PropTypes.func.isRequired,
     running: PropTypes.bool.isRequired
-}
+};
 
 const PomodoroHome =  connect(mapStateToProps, mapDispatchToProps)(RootView);
 

@@ -4,5 +4,5 @@ export default function decreaseTimer(value = 1){
     return {
         type : DECREASE_TIMER,
         value
-    }
+    };
 }

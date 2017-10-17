@@ -1,0 +1,1 @@
+export const INIT_VAL = 25 * 60;
