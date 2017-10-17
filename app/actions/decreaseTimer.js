@@ -1,8 +1,8 @@
-import { DECREASE_TIMER } from './types';
+import { DECREASE_TIMER } from '../constants/actions';
 
-export default function decreaseTimer(decreaseBy = 1){
+export default function decreaseTimer(value = 1){
     return {
         type : DECREASE_TIMER,
-        decreaseBy
+        value
     }
 }

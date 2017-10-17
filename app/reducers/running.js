@@ -1,4 +1,4 @@
-import { SET_RUNNING } from '../actions/types';
+import { SET_RUNNING } from '../constants/actions';
 
 const running = (running = false, action) => {
     switch (action.type) {

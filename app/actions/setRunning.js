@@ -1,4 +1,4 @@
-import { SET_RUNNING } from './types';
+import { DECREASE_TIMER } from '../constants/actions';
 
 export default function setRunning(running = false){
     return {

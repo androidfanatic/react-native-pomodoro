@@ -1,12 +1,13 @@
 import { connect } from 'react-redux'
 import decreaseTimer from '../actions/decreaseTimer';
+import resetTimer from '../actions/resetTimer';
 import setRunning from '../actions/setRunning';
 
 import React from 'react';
 import PropTypes from 'prop-types';
 import { StyleSheet, Animated } from 'react-native';
-import ImageButton from '../ui/ImageButton.js';
-import TimerText from '../ui/TimerText.js';
+import ImageButton from '../components/ImageButton.js';
+import TimerText from '../components/TimerText.js';
   
 let interval = null;
 let bgColor = new Animated.Value(0);
@@ -14,7 +15,7 @@ let bgColor = new Animated.Value(0);
 const stop = (dispatch) => {
     Animated.spring(bgColor, { toValue: 0 }).start();
     dispatch(setRunning(false));
-    // dispatch(resetTimer());
+    dispatch(resetTimer());
     stopTimer();
 }
 
@@ -89,6 +90,6 @@ RootView.propTypes = {
     running: PropTypes.bool.isRequired
 }
 
-const PomodoroView =  connect(mapStateToProps, mapDispatchToProps)(RootView);
+const PomodoroHome =  connect(mapStateToProps, mapDispatchToProps)(RootView);
 
-export default PomodoroView;
+export default PomodoroHome;
