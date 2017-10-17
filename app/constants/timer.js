@@ -1,1 +1,1 @@
-export const INIT_VAL = 25 * 60;
+export const INIT_VAL = 10;

@@ -2,14 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Text } from 'react-native';
 
-const TimerText = ({timer}) => {
+const TimerText = ({mm, ss}) => {    
 
-    let mm = Math.floor(timer / 60);
-    if (mm < 10) mm = `0${mm}`;
-    
-    let ss = timer % 60;
-    if (ss < 10) ss = `0${ss}`;
-    
     return (
         <Text 
             style={{ color: '#ddd', fontSize: 120 }}>
@@ -19,7 +13,8 @@ const TimerText = ({timer}) => {
 };
 
 TimerText.propTypes = {
-    timer: PropTypes.number.isRequired
+    mm: PropTypes.string.isRequired,
+    ss: PropTypes.string.isRequired
 };
 
 export default TimerText;

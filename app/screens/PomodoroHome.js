@@ -6,8 +6,10 @@ import setRunning from '../actions/setRunning';
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Animated } from 'react-native';
-import ImageButton from '../components/ImageButton.js';
-import TimerText from '../components/TimerText.js';
+import ImageButton from '../components/ImageButton';
+import TimerText from '../components/TimerText';
+
+import TimerTextUtil from '../utils/TimerTextUtil';
   
 let interval = null;
 let bgColor = new Animated.Value(0);
@@ -69,12 +71,15 @@ const RootView = ({timer, start, stop, running}) => {
         outputRange: ['#333', '#c43'],
     });
 
+    let mm = TimerTextUtil.getMM(timer);
+    let ss = TimerTextUtil.getSS(timer);
+
     return (
         <Animated.View 
             style = {[{ 
                 flex: 1, alignItems: 'center', justifyContent: 'center' 
             }, { backgroundColor } ]}>
-            <TimerText timer={timer} />
+            <TimerText mm={mm} ss={ss} />
             <ImageButton 
                 onClick={running ? stop : start}
                 name={running ? 'stop': 'play'}
