@@ -13,6 +13,9 @@ export default class Timer {
     }
 
     stop() {
+        if(this.unsubscribe){
+            this.unsubscribe();
+        }
         this.stopTimer();
         logger.info('stopping');
         store.dispatch(setRunning(false));
@@ -21,22 +24,16 @@ export default class Timer {
     
     start() {
         this.unsubscribe = store.subscribe(() => {
-            this.timerChanged(store.getState());
+            this.timerChanged(store.getState().timer);
         });
         store.dispatch(setRunning(true));
         this.stopTimer();
         this.startTimer(); 
     }
 
-    timerChanged(state){
-        if(state.hasOwnProperty('timer')){
-            logger.info('Timer changed', state.timer);
-            if(state.timer === 0){
-                if(this.unsubscribe){
-                    this.unsubscribe();
-                }
-                this.stop();
-            }
+    timerChanged(timer){
+        if(timer === 0){
+            this.stop();
         }
     }
     
