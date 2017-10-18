@@ -1,4 +1,3 @@
-import { Animated } from 'react-native';
 import store from '../store';
 import setRunning from '../actions/setRunning';
 import decreaseTimer from '../actions/decreaseTimer';
