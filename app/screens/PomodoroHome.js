@@ -6,6 +6,7 @@ import { Text, Animated } from 'react-native';
 import ImageButton from '../components/ImageButton';
 import TimerText from '../components/TimerText';
 
+import Logger from '../utils/Logger';
 import Timer from '../utils/Timer';
 import TimerTextUtil from '../utils/TimerTextUtil';
 import store from '../store';
@@ -15,7 +16,7 @@ let bgColor = new Animated.Value(0);
 
 store.subscribe(() => {
     let state = store.getState();
-    console.log(JSON.stringify(state));
+    Logger.info(JSON.stringify(state));
     if(state.hasOwnProperty('running')) {
         if(state.running) {
             Animated.spring(bgColor, { toValue: 1 }).start();
@@ -33,7 +34,7 @@ const mapStateToProps = state => {
     };
 };
 
-const mapDispatchToProps = (dispatch, ownProps) => {
+const mapDispatchToProps = () => {
     return { 
         start: () => timer.start(), 
         stop: () => timer.stop()
@@ -53,8 +54,8 @@ const RootView = ({timer, start, stop, running, timesCompleted}) => {
                 flex: 1, alignItems: 'center', justifyContent: 'center' 
             }, { backgroundColor } ]}>
             <TimerText 
-              mm={TimerTextUtil.getMM(timer)} 
-              ss={TimerTextUtil.getSS(timer)}
+                mm={TimerTextUtil.getMM(timer)} 
+                ss={TimerTextUtil.getSS(timer)}
             />
             <ImageButton 
                 onClick={running ? stop : start}
@@ -64,8 +65,8 @@ const RootView = ({timer, start, stop, running, timesCompleted}) => {
                 margin: 16,
                 color: '#aaa'
             }}>{timesCompleted === 0 ? 
-                `Start winning with Pomodoro!` : 
-                `You have won a total of ${timesCompleted} times.`
+                    'Start winning with Pomodoro!' : 
+                    `You have won a total of ${timesCompleted} times.`
                 }
             </Text>
         </Animated.View>
