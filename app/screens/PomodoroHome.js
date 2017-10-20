@@ -16,7 +16,6 @@ let bgColor = new Animated.Value(0);
 
 store.subscribe(() => {
     let state = store.getState();
-    Logger.info(JSON.stringify(state));
     if(state.hasOwnProperty('running')) {
         if(state.running) {
             Animated.spring(bgColor, { toValue: 1 }).start();

@@ -28,7 +28,6 @@ export default class Timer {
             this.unsubscribe();
         }
         this.stopTimer();
-        Logger.info('stopping');
         store.dispatch(setRunning(false));
         store.dispatch(resetTimer());
     }
