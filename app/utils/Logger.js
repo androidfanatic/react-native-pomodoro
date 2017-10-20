@@ -4,11 +4,11 @@ const log = (level, color) => {
     }
 };
 
-const logger = {
+const Logger = {
     info: log('info', "\x1b[32m"),
     debug: log('debug'),
     silly: log('silly'),
     error: log('error')
 }
 
-export default logger;
+export default Logger;

@@ -1,1 +1,2 @@
-export const INIT_VAL = 10;
+export const INIT_VAL = 5;
+export const COMPLETED_TIMES_KEY = '@pomodoro:completed_times';
