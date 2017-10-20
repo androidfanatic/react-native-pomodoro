@@ -4,4 +4,4 @@
 
 * Redux
 
-<img src="icons/screen.png" alt="Screenshot" />
+<img src="icons/screen.png" alt="Screenshot" style="max-width: 320px" />
